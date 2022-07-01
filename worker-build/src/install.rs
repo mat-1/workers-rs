@@ -70,7 +70,8 @@ pub fn ensure_esbuild() -> Result<PathBuf> {
 
     let mut options = &mut std::fs::OpenOptions::new();
 
-    if cfg!(unix) {
+    #[cfg(unix)]
+    {
         use std::os::unix::prelude::OpenOptionsExt;
         options = options.mode(0o770);
     }
